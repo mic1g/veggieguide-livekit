@@ -34,8 +34,8 @@ export const WelcomeView = ({
               <Leaf className="size-5" />
             </div>
             <div>
-              <p className="text-lg font-bold leading-tight">VeggieGuide</p>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#52765d]">
+              <p className="text-lg leading-tight font-bold">VeggieGuide</p>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[#52765d] uppercase">
                 Hong Kong dining guide
               </p>
             </div>
@@ -51,25 +51,25 @@ export const WelcomeView = ({
             <div className="mx-auto max-w-3xl text-center lg:text-left">
               <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-[#cae2bd] bg-white/70 px-4 py-2 text-sm font-semibold text-[#28633b] shadow-sm backdrop-blur lg:mx-0">
                 <Sparkles className="size-4 text-[#ef9d2f]" />
-                Buddha's Birthday dining by voice
+                Buddha&apos;s Birthday dining by voice
               </div>
-              <h1 className="text-balance text-5xl font-black leading-[1.02] text-[#102d19] sm:text-6xl lg:text-7xl">
-                Buddha's Birthday Restaurant Guide
+              <h1 className="text-5xl leading-[1.02] font-black text-balance text-[#102d19] sm:text-6xl lg:text-7xl">
+                Buddha&apos;s Birthday Restaurant Guide
               </h1>
-              <p className="mx-auto mt-5 max-w-2xl text-pretty text-lg leading-8 text-[#426149] lg:mx-0">
-                Find Buddhist-style vegetarian restaurants in Hong Kong, choose suitable dishes,
-                and check strict vegetarian needs for Buddha's Birthday.
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-pretty text-[#426149] lg:mx-0">
+                Find Buddhist-style vegetarian restaurants in Hong Kong, choose suitable dishes, and
+                check strict vegetarian needs for Buddha&apos;s Birthday.
               </p>
 
               <div className="mt-8 grid gap-4 rounded-[28px] border border-white/70 bg-white/75 p-4 text-left shadow-xl shadow-emerald-950/8 backdrop-blur md:grid-cols-2">
                 <label className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#64806a]">
+                  <span className="text-xs font-bold tracking-[0.18em] text-[#64806a] uppercase">
                     Language
                   </span>
                   <select
                     value={language}
                     onChange={(event) => setLanguage(event.target.value)}
-                    className="h-12 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-4 text-sm font-semibold text-[#173820] outline-none ring-[#77c58e] transition focus:ring-4"
+                    className="h-12 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-4 text-sm font-semibold text-[#173820] ring-[#77c58e] transition outline-none focus:ring-4"
                   >
                     {LANGUAGES.map((item) => (
                       <option key={item}>{item}</option>
@@ -78,19 +78,19 @@ export const WelcomeView = ({
                 </label>
 
                 <label className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#64806a]">
+                  <span className="text-xs font-bold tracking-[0.18em] text-[#64806a] uppercase">
                     Mode
                   </span>
                   <select
                     value={mode}
                     onChange={(event) => setMode(event.target.value)}
-                    className="h-12 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-4 text-sm font-semibold text-[#173820] outline-none ring-[#77c58e] transition focus:ring-4"
+                    className="h-12 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-4 text-sm font-semibold text-[#173820] ring-[#77c58e] transition outline-none focus:ring-4"
                   >
                     {MODES.map((item) => (
                       <option key={item}>{item}</option>
                     ))}
                   </select>
-                  <span className="block text-xs font-medium leading-5 text-[#5d7d62]">
+                  <span className="block text-xs leading-5 font-medium text-[#5d7d62]">
                     Sets whether VeggieGuide should find a restaurant, check strict suitability, or
                     suggest dishes.
                   </span>
@@ -157,7 +157,7 @@ export const WelcomeView = ({
               <p className="mb-2 grid size-8 place-items-center rounded-full bg-[#d9f1c8] text-sm font-black text-[#1d6b3f]">
                 {step}
               </p>
-              <p className="text-sm font-semibold leading-6 text-[#3f6246]">{text}</p>
+              <p className="text-sm leading-6 font-semibold text-[#3f6246]">{text}</p>
             </div>
           ))}
         </section>

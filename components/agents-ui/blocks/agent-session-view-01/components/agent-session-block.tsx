@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, type MotionProps, motion } from 'motion/react';
 import { Leaf, Mic2, Sparkles } from 'lucide-react';
+import { AnimatePresence, type MotionProps, motion } from 'motion/react';
 import { useAgent, useSessionContext, useSessionMessages } from '@livekit/components-react';
 import { AgentChatTranscript } from '@/components/agents-ui/agent-chat-transcript';
 import {
@@ -190,6 +190,19 @@ export function AgentSessionView_01({
   const { state: agentState } = useAgent();
   const chatOpen = true;
 
+  void [
+    supportsChatInput,
+    audioVisualizerType,
+    audioVisualizerColor,
+    audioVisualizerColorShift,
+    audioVisualizerBarCount,
+    audioVisualizerGridRowCount,
+    audioVisualizerGridColumnCount,
+    audioVisualizerRadialBarCount,
+    audioVisualizerRadialRadius,
+    audioVisualizerWaveLineWidth,
+  ];
+
   const controls: AgentControlBarControls = {
     leave: true,
     microphone: true,
@@ -223,9 +236,9 @@ export function AgentSessionView_01({
               <Leaf className="size-5" />
             </div>
             <div>
-              <p className="font-bold leading-tight">VeggieGuide</p>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5d7d62]">
-                Buddha's Birthday Restaurant Guide
+              <p className="leading-tight font-bold">VeggieGuide</p>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[#5d7d62] uppercase">
+                Buddha&apos;s Birthday Restaurant Guide
               </p>
             </div>
           </div>
@@ -243,13 +256,13 @@ export function AgentSessionView_01({
                 Session setup
               </div>
               <label className="block space-y-2">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#64806a]">
+                <span className="text-xs font-bold tracking-[0.18em] text-[#64806a] uppercase">
                   Language
                 </span>
                 <select
                   value={language}
                   onChange={(event) => setLanguage(event.target.value)}
-                  className="h-11 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-3 text-sm font-semibold text-[#173820] outline-none ring-[#77c58e] transition focus:ring-4"
+                  className="h-11 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-3 text-sm font-semibold text-[#173820] ring-[#77c58e] transition outline-none focus:ring-4"
                 >
                   {LANGUAGES.map((item) => (
                     <option key={item}>{item}</option>
@@ -257,19 +270,19 @@ export function AgentSessionView_01({
                 </select>
               </label>
               <label className="mt-4 block space-y-2">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#64806a]">
+                <span className="text-xs font-bold tracking-[0.18em] text-[#64806a] uppercase">
                   Mode
                 </span>
                 <select
                   value={mode}
                   onChange={(event) => setMode(event.target.value)}
-                  className="h-11 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-3 text-sm font-semibold text-[#173820] outline-none ring-[#77c58e] transition focus:ring-4"
+                  className="h-11 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-3 text-sm font-semibold text-[#173820] ring-[#77c58e] transition outline-none focus:ring-4"
                 >
                   {MODES.map((item) => (
                     <option key={item}>{item}</option>
                   ))}
                 </select>
-                <span className="block text-xs font-medium leading-5 text-[#5d7d62]">
+                <span className="block text-xs leading-5 font-medium text-[#5d7d62]">
                   Sets whether VeggieGuide should find a restaurant, check strict suitability, or
                   suggest dishes.
                 </span>
@@ -282,8 +295,8 @@ export function AgentSessionView_01({
               </div>
               <p className="mt-5 text-lg font-black">Speak naturally.</p>
               <p className="mt-2 text-sm leading-6 text-[#d7f0dd]">
-                Ask about Po Lin, Chi Lin, LockCha, YUAN, Woodlands, or strict Buddhist
-                vegetarian needs.
+                Ask about Po Lin, Chi Lin, LockCha, YUAN, Woodlands, or strict Buddhist vegetarian
+                needs.
               </p>
             </div>
           </aside>
@@ -291,10 +304,12 @@ export function AgentSessionView_01({
           <div className="flex min-h-0 flex-col rounded-[32px] border border-white/80 bg-white/80 p-4 shadow-2xl shadow-emerald-950/10 backdrop-blur">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#d9e8d0] pb-4">
               <div>
-                <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#66836c]">
+                <p className="text-sm font-bold tracking-[0.18em] text-[#66836c] uppercase">
                   Live transcript
                 </p>
-                <h2 className="text-2xl font-black text-[#12341d]">Buddha's Birthday guide chat</h2>
+                <h2 className="text-2xl font-black text-[#12341d]">
+                  Buddha&apos;s Birthday guide chat
+                </h2>
               </div>
               <div className="rounded-full bg-[#e4f5d8] px-4 py-2 text-sm font-bold text-[#22683d]">
                 {agentState}
@@ -317,8 +332,8 @@ export function AgentSessionView_01({
                           Your live transcript will appear here.
                         </p>
                         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5b785f]">
-                          Try asking where to go for Buddha's Birthday, what to order at Chi Lin,
-                          or whether a restaurant can support strict Buddhist vegetarian needs.
+                          Try asking where to go for Buddha&apos;s Birthday, what to order at Chi
+                          Lin, or whether a restaurant can support strict Buddhist vegetarian needs.
                         </p>
                       </div>
                     </div>

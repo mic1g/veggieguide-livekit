@@ -288,7 +288,7 @@ export function AgentControlBar({
     <div
       aria-label="Voice assistant controls"
       className={cn(
-        'border-[#cfe3c4] bg-white/95 dark:border-[#cfe3c4] flex flex-col border p-3 shadow-2xl shadow-emerald-950/10 backdrop-blur',
+        'flex flex-col border border-[#cfe3c4] bg-white/95 p-3 shadow-2xl shadow-emerald-950/10 backdrop-blur dark:border-[#cfe3c4]',
         variant === 'livekit' ? 'rounded-[31px]' : 'rounded-lg',
         className
       )}
