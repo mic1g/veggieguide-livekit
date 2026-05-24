@@ -13,18 +13,27 @@ type ConnectionDetails = {
 const API_KEY = process.env.LIVEKIT_API_KEY;
 const API_SECRET = process.env.LIVEKIT_API_SECRET;
 const LIVEKIT_URL = process.env.LIVEKIT_URL;
+const DEMO_ACCESS_CODE = process.env.DEMO_ACCESS_CODE;
 
 // don't cache the results
 export const revalidate = 0;
 
 export async function POST(req: Request) {
-  if (process.env.NODE_ENV !== 'development') {
-    throw new Error(
-      'THIS API ROUTE IS INSECURE. DO NOT USE THIS ROUTE IN PRODUCTION WITHOUT AN AUTHENTICATION LAYER.'
-    );
-  }
-
   try {
+    const body = await req.json().catch(() => ({}));
+
+    if (process.env.NODE_ENV === 'production') {
+      if (!DEMO_ACCESS_CODE) {
+        return NextResponse.json({ error: 'DEMO_ACCESS_CODE is not configured' }, { status: 500 });
+      }
+
+      const accessCode = req.headers.get('x-demo-access-code') ?? body?.accessCode;
+
+      if (accessCode !== DEMO_ACCESS_CODE) {
+        return NextResponse.json({ error: 'Invalid demo access code' }, { status: 401 });
+      }
+    }
+
     if (LIVEKIT_URL === undefined) {
       throw new Error('LIVEKIT_URL is not defined');
     }
@@ -36,7 +45,6 @@ export async function POST(req: Request) {
     }
 
     // Parse room config from request body.
-    const body = await req.json();
     const roomConfig = body?.room_config
       ? RoomConfiguration.fromJson(body.room_config, { ignoreUnknownFields: true })
       : new RoomConfiguration();

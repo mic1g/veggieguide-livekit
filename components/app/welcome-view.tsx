@@ -8,6 +8,7 @@ const MODES = [
   'Check Buddhist Vegetarian Suitability',
   'Choose Dishes',
 ];
+const DEMO_ACCESS_CODE_STORAGE_KEY = 'veggieguide-demo-access-code';
 
 interface WelcomeViewProps {
   startButtonText: string;
@@ -21,6 +22,15 @@ export const WelcomeView = ({
 }: React.ComponentProps<'div'> & WelcomeViewProps) => {
   const [language, setLanguage] = useState(LANGUAGES[0]);
   const [mode, setMode] = useState(MODES[0]);
+  const [accessCode, setAccessCode] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    return window.sessionStorage.getItem(DEMO_ACCESS_CODE_STORAGE_KEY) ?? '';
+  });
+
+  const handleStartCall = () => {
+    window.sessionStorage.setItem(DEMO_ACCESS_CODE_STORAGE_KEY, accessCode.trim());
+    onStartCall();
+  };
 
   return (
     <div
@@ -95,11 +105,24 @@ export const WelcomeView = ({
                     suggest dishes.
                   </span>
                 </label>
+
+                <label className="space-y-2 md:col-span-2">
+                  <span className="text-xs font-bold tracking-[0.18em] text-[#64806a] uppercase">
+                    Demo access code
+                  </span>
+                  <input
+                    value={accessCode}
+                    onChange={(event) => setAccessCode(event.target.value)}
+                    className="h-12 w-full rounded-2xl border border-[#c9dfbe] bg-[#fbfff8] px-4 text-sm font-semibold text-[#173820] ring-[#77c58e] transition outline-none focus:ring-4"
+                    placeholder="Enter the demo access code"
+                    type="password"
+                  />
+                </label>
               </div>
 
               <Button
                 size="lg"
-                onClick={onStartCall}
+                onClick={handleStartCall}
                 className="mt-7 h-14 rounded-full bg-[#1d8b53] px-8 text-base font-bold text-white shadow-xl shadow-emerald-900/18 hover:bg-[#176f43]"
               >
                 <Mic className="mr-2 size-5" />
